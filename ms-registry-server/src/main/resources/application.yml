@@ -1,7 +1,22 @@
+server:
+  port: 8761  # Puerto donde se ejecutará Eureka Server
+
 spring:
   application:
-    name: ms-registry-server
-  profiles:
-    active: development
-  config:
-    import: optional:configserver:http://root:123456@localhost:7071
+    name: ms-registry-server  # Nombre del microservicio (usado por otros para registrarse)
+
+eureka:
+  client:
+    register-with-eureka: false  # Este servicio no se registra a sí mismo
+    fetch-registry: false        # Este servicio no necesita consumir el registro
+  server:
+    wait-time-in-ms-when-sync-empty: 0  # Evita demoras al iniciar
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always

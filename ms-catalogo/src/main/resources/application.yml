@@ -5,3 +5,8 @@ spring:
     active: development
   config:
     import: optional:configserver:http://root:123456@localhost:7071
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123456@localhost:8761/eureka
